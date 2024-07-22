@@ -6,11 +6,14 @@ Return the actual page.
 import csv
 from typing import List, Tuple
 
+
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
-    """ Return a tuple of size two containing a start index and an end index. """
+    """ Return a tuple of size two containing a start index
+      and an end index. """
     start_index = (page - 1) * page_size
     end_index = page * page_size
     return (start_index, end_index)
+
 
 class Server:
     """Server class to paginate a database of popular baby names.
@@ -39,5 +42,7 @@ class Server:
         dataset = self.dataset()
         start_index, end_index = index_range(page, page_size)
 
-        return dataset[start_index:end_index] if start_index < len(dataset) else []
-    
+        if start_index < len(dataset):
+            return []
+        else:
+            return dataset[start_index:end_index]

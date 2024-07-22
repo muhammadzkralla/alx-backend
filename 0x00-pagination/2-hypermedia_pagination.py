@@ -7,11 +7,14 @@ import csv
 import math
 from typing import Dict, List, Tuple, Any
 
+
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
-    """ Return a tuple of size two containing a start index and an end index. """
+    """ Return a tuple of size two containing
+      a start index and an end index. """
     start_index = (page - 1) * page_size
     end_index = page * page_size
     return (start_index, end_index)
+
 
 class Server:
     """Server class to paginate a database of popular baby names.
@@ -42,8 +45,11 @@ class Server:
         dataset = self.dataset()
         start_index, end_index = index_range(page, page_size)
 
-        return dataset[start_index:end_index] if start_index < len(dataset) else []
-    
+        if start_index < len(dataset):
+            return []
+        else:
+            return dataset[start_index:end_index]
+
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Any]:
         """ Get hypermedia pagination details. """
         total_pages = math.ceil(len(self.dataset()) / page_size)
@@ -55,4 +61,3 @@ class Server:
             "prev_page": page - 1 if page > 1 else None,
             "total_pages": total_pages
         }
-    
