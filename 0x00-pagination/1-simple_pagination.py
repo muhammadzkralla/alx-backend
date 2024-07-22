@@ -5,9 +5,9 @@ Return the actual page.
 
 import csv
 import math
-from typing import List, Tuple
+from typing import List
 
-def index_range(page: int, page_size: int) -> Tuple[int, int]:
+def index_range(page: int, page_size: int) -> tuple[int, int]:
     """ Return a tuple of size two containing a start index and an end index. """
     start_index = (page - 1) * page_size
     end_index = page * page_size
