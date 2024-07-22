@@ -41,12 +41,14 @@ class Server:
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """ Returns a dictionary with pagination information. """
-        assert isinstance(index, int) and index >= 0
-        assert isinstance(page_size, int) and page_size > 0
+        assert isinstance(index, int)
+        assert isinstance(page_size, int)
 
         indexed_data = self.indexed_dataset()
         dataset_size = len(indexed_data)
 
+        assert page_size > 0
+        assert index >= 0
         assert index < dataset_size
 
         data = []
