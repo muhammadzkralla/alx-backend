@@ -2,6 +2,7 @@
 """ 1-fifo_cache """
 from base_caching import BaseCaching
 
+
 class FIFOCache(BaseCaching):
     """ FIFOCache class to implement a FIFO caching system """
 
